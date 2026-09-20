@@ -1,4 +1,8 @@
-const API_BASE = '/api';
+const RAW_URL = import.meta.env.VITE_API_URL;
+const API_BASE = RAW_URL
+  ? (RAW_URL.endsWith('/api') ? RAW_URL : `${RAW_URL.replace(/\/+$/, '')}/api`)
+  : '/api';
+
 
 async function request(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`;
